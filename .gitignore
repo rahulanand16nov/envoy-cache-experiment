@@ -1,2 +1,2 @@
-/target
-Cargo.lock
+/send_to_and_get_from_host/target
+/send_to_and_get_from_host/Cargo.lock
