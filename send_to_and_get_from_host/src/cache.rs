@@ -3,8 +3,8 @@ use serde_json;
 use log::debug;
 use serde::{Serialize, Deserialize};
 use std::marker::PhantomData;
-#[derive(Serialize, Deserialize)]
 
+#[derive(Serialize, Deserialize)]
 pub struct UsageReportCache<'urc> {
     // Key will of type: ServiceID_AppID
     cache: HashMap<String,UsageReports>,
@@ -62,7 +62,7 @@ impl <'urc> UsageReportCache<'urc> {
             Ok((data_option,_cas)) => {
                 match data_option {
                     Some(ref data) => {
-                        debug!("This is the data from host: {:?}", data);
+                        debug!("This is the data from host: {:?}", std::str::from_utf8(data).unwrap());
                         // convert the shared data to UsageReport and return it back
                     },
                     None => debug!("Data option is empty!")
