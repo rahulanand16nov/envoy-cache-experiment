@@ -12,21 +12,21 @@ pub fn _start() {
     proxy_wasm::set_log_level(LogLevel::Debug);
     debug!("In START!");
     proxy_wasm::set_http_context(|context_id, _| -> Box<dyn HttpContext> {
-        Box::new(CacheAuthorizer { context_id })
+        Box::new(CacheAuthorizer { context_id, cache_pt : &mut  URC::new(),})
     });
 }
 
-struct CacheAuthorizer {
+struct CacheAuthorizer<'a> {
     context_id: u32,
+    cache_pt: *mut URC<'a>,
 }
 
-impl Context for CacheAuthorizer {}
+impl Context for CacheAuthorizer<'_> {}
 
-impl HttpContext for CacheAuthorizer {
+impl HttpContext for CacheAuthorizer<'_> {
     fn on_http_request_headers(&mut self, _: usize) -> Action {
         // Need to find a better way for this to be globally available or be able to pass around after first initialization
         //unsafe {if cache_pt.is_null() { cache_pt = &mut URC::new();}}
-        let cache_pt = &mut URC::new();
         match self.get_http_request_header("key") {
             Some(key) => match URC::get(cache_pt,&key) { // check the key is correct first 
                 Some(_report) => debug!("Got some report for you :)"),
