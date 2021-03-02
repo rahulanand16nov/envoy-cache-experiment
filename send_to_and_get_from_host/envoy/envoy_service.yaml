@@ -1,0 +1,11 @@
+wasm_service:
+  config:
+    name: "singleton_service"
+    root_id: "singleton_service"
+    vm_config:
+      runtime: "envoy.wasm.runtime.v8"
+      code:
+        local:
+          filename: "/etc/service_module.wasm"
+      allow_precompiled: true
+  singleton: true

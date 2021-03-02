@@ -1,2 +1,4 @@
 /send_to_and_get_from_host/target
 /send_to_and_get_from_host/Cargo.lock
+/workers_and_service/target
+/workers_and_service/Cargo.lock

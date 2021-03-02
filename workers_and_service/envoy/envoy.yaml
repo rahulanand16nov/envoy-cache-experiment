@@ -72,17 +72,6 @@ static_resources:
     - socket_address:
         address: web_service
         port_value: 5678
-wasm_service:
-  config:
-    name: "singleton_service"
-    root_id: "singleton_service"
-    vm_config:
-      runtime: "envoy.wasm.runtime.v8"
-      code:
-        local:
-          filename: "/etc/service_module.wasm"
-      allow_precompiled: true
-  singleton: true
 admin:
   access_log_path: "/dev/null"
   address:

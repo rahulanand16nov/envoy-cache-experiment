@@ -10,7 +10,7 @@ type URC<'a> = cache::UsageReportCache<'a>;
 #[no_mangle]
 pub fn _start() {
     proxy_wasm::set_log_level(LogLevel::Debug);
-    debug!("In START!");
+    debug!("In SERVICE MODULE!!");
     proxy_wasm::set_http_context(|context_id, _| -> Box<dyn HttpContext> {
         Box::new(CacheAuthorizer { context_id, cache_pt : &mut  URC::new(),})
     });

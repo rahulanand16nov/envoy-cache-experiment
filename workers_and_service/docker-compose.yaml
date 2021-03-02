@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile.proxy
     volumes:
       - ./envoy/envoy.yaml:/etc/envoy.yaml
+      - ./envoy/envoyService.yaml:/etc/envoyService.yaml
       - ./target/wasm32-unknown-unknown/release/cache_module.wasm:/etc/cache_module.wasm
       - ./target/wasm32-unknown-unknown/release/service_module.wasm:/etc/service_module.wasm
       # Uncomment this line if you want to use your own Envoy with WASM enabled.
